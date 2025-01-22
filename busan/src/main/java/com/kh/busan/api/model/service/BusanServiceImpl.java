@@ -64,7 +64,13 @@ public class BusanServiceImpl implements BusanService {
 
 	@Override
 	public void save(CommentDTO comment) {
+		// 유효성 검증을 하지 않았다.
+		// comment, writer 컬럼이 NOT NULL인데 빈문자열이 넘어오면
+		// 에러 발생
 		
+		if(comment.getWriter().equals("") || comment.getContent().equals("")) {
+			System.out.println("예외가 발생했어야함");
+		}
 		mapper.save(comment);
 		
 	}
